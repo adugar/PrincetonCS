@@ -1,0 +1,35 @@
+/******************************************************************************
+ *  Name: Armaan Dugar
+ *  NetID: adugar
+ *  Precept: P07
+ *
+ *  Description:
+ *
+ ******************************************************************************/
+
+10: 81FF   read R[1]                     
+If the first number is greater than or equal to 0, then continue
+to reading the other numbers. Otherwise, halt.
+11: D114   if (R[1] > 0) goto 14         
+12: C114   if (R[1] == 0) goto 14        
+13: 0000   halt                          
+14: 82FF   read R[2]                                                                
+15: 83FF   read R[3]                     
+16: 84FF   read R[4]                     
+Calculate the parity bits with two bits at a time.
+17: 4512   R[5] <- R[1] ^ R[2]           
+18: 4654   R[6] <- R[5] ^ R[4]           
+19: 4713   R[7] <- R[1] ^ R[3]           
+1A: 4874   R[8] <- R[7] ^ R[4]           
+1B: 4A23   R[A] <- R[2] ^ R[3]           
+1C: 4BA4   R[B] <- R[A] ^ R[4]           
+Write out the message bits and parity bits.
+1D: 91FF   write R[1]                    
+1E: 92FF   write R[2]                    
+1F: 93FF   write R[3]                    
+20: 94FF   write R[4]                                
+21: 96FF   write R[6]                    
+22: 98FF   write R[8]                    
+23: 9BFF   write R[B]                    
+Go back to reading inputs.
+24: C010   goto 10                                                                 
